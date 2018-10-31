@@ -1,6 +1,7 @@
 #! /env/python3
 
 from pymongo import MongoClient
+from datetime import datetime
 
 POTATO_SKIP = 3
 
@@ -34,7 +35,7 @@ def register_call(keyphrase, caller_number):
             'owner_number': caller_number,
             'submitters': [caller_number],
             'numbers_redeemed': 0,
-            'has_potato': is_hot_potato,
+            'has_potato': datetime.utcnow() if is_hot_potato else False,
         })
 
 register_call('x', -1)
